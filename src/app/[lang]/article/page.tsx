@@ -1,7 +1,7 @@
 import { getDictionary } from "@/utils/dictionary";
 import siteMetadata from "@/utils/siteMetaData";
 import NotFound from "@/app/not-found";
-import HomeCoverSection from "@/components/Home/HomeCoverSection";
+import ArticleCoverSection from "@/components/Article/ArticleCoverSection";
 
 
 export async function generateMetadata({ params: { lang } }:any) {
@@ -29,6 +29,6 @@ export default async function Home({ params: { lang } }:any) {
   }
 
   return (
-    <HomeCoverSection lang={lang} />
+    <ArticleCoverSection lang={lang} />
   );
 }

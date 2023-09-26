@@ -1,23 +1,74 @@
-"use client"
 import './globals.css'
 
-import { Inter } from 'next/font/google'
-import { i18n } from "@/app/i18n.config";
-import { useParams } from 'next/navigation'
-const inter = Inter({ subsets: ['latin'] })
+import { cx } from "@/utils";
+import { Inter, Manrope } from "next/font/google";
+import siteMetadata from "@/utils/siteMetaData";
+import Header from '@/components/Header';
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-in",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mr",
+});
+
+export const metadata = {
+  metadataBase: new URL(siteMetadata.siteUrl),
+  title: {
+    template: `%s | ${siteMetadata.title}`,
+    default: siteMetadata.title, // a default is required when creating a template
+  },
+  description: siteMetadata.description,
+  openGraph: {
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    url: siteMetadata.siteUrl,
+    siteName: siteMetadata.title,
+    images: [siteMetadata.socialBanner],
+    locale: "en",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteMetadata.title,
+    images: [siteMetadata.socialBanner],
+  },
+};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const params = useParams() || {};
-  const lang = (params.lang || i18n.defaultLocale ).toString();
-
   return (
-    <html lang={lang}>
-      <body className={inter.className}>
-        <main>{children}</main>
+    <html lang="en">
+      <body
+        className={cx(
+          inter.variable,
+          manrope.variable,
+          "font-mr bg-light dark:bg-dark"
+        )}>
+        <main>
+          <Header />
+          {children}
+        </main>
       </body>
     </html>
   )
