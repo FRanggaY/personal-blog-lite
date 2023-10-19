@@ -2,9 +2,9 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
-      name: 'Dummy FIG',
-      short_name: 'Dummy FIG',
-      description: 'Dummy FIG',
+      name: 'Personal Blog Lite',
+      short_name: 'Personal Blog',
+      description: 'Personal Blog',
       start_url: '/',
       display: 'standalone',
     //   background_color: '#fff',

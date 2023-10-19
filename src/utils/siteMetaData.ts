@@ -1,8 +1,8 @@
 const siteMetadata = {
-    title: 'Dummy FIG Client',
+    title: 'Personal Blog Lite',
     author: 'FRY',
-    headerTitle: 'Dummy FIG Client',
-    description: 'A blog of information fiction for dummy project',
+    headerTitle: 'Personal Blog Lite',
+    description: 'A blog of information of my experience',
     language: 'en',
     theme: 'system', // system, dark or light
     siteUrl: 'http://localhost:3000/', // your website URL

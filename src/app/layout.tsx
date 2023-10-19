@@ -65,10 +65,8 @@ export default function RootLayout({
           manrope.variable,
           "font-mr bg-light dark:bg-dark"
         )}>
-        <main>
-          <Header />
-          {children}
-        </main>
+        <Header />
+        {children}
       </body>
     </html>
   )
