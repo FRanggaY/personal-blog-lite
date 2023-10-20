@@ -23,7 +23,7 @@ module.exports = {
         in: ["var(--font-in)"]
       },
       animation:{
-        roll: "roll 24s linear infinite"
+        roll: "roll 15s linear infinite"
       },
       keyframes:{
         roll:{

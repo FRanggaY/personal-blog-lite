@@ -63,7 +63,7 @@ export default function RootLayout({
         className={cx(
           inter.variable,
           manrope.variable,
-          "font-mr bg-light dark:bg-dark"
+          "font-mr bg-light dark:bg-stone-950"
         )}>
         <Header />
         {children}
