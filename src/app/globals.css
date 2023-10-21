@@ -5,3 +5,14 @@
 .prose a {
   color: inherit;
 }
+
+.prose pre {
+  white-space: pre-wrap;
+  font-size: 5px;
+}
+
+@media screen and (min-width: 560px) {
+  .prose pre {
+    font-size: 20px !important;
+  }
+}
