@@ -1,7 +1,4 @@
-const siteMetadata = require("./src/utils/siteMetaData");
-
-
 module.exports = {
-  siteUrl: siteMetadata.siteUrl,
+  siteUrl: process.env.SITE_URL,
   generateRobotsTxt: true,
 }
