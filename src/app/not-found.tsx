@@ -28,7 +28,7 @@ export default function NotFound() {
     };
 
     fetchData();
-  }, []);
+  }, [currentLang]);
 
   if (!contentPage) {
     return <div>Loading...</div>; // Display a loading indicator while fetching data
