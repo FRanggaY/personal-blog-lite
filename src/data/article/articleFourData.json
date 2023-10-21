@@ -1,0 +1,20 @@
+{
+
+  "title": "Ubuntu 20.04 - Install Docker with Docker Compose",
+  "slug": "ubuntu-20-04-install-docker-with-docker-compose",
+  "categories": [
+    {
+      "id": "3",
+      "label": "Tutorial"
+    }
+  ],
+  "lang": "en",
+  "author": "FRY",
+  "imageUrl": "/article/ubuntu-20-04-install-docker-with-docker-compose/aen-t5w-202310211532.png",
+  "publishedAt": "2023-10-21",
+  "updatedAt": "2023-10-21",
+  "headline": "This article exists, to help install docker in ubuntu",
+  "description": "<p>Step by Step :</p><p>    <br></p><p>update package list</p><pre spellcheck=\"false\">sudo apt update</pre><p>install required package</p><pre spellcheck=\"false\">sudo apt install apt-transport-https ca-certificates curl software-properties-common</pre><p>GPG key for Docker</p><pre spellcheck=\"false\">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</pre><p>Add Docker Repository</p><pre spellcheck=\"false\">echo \"deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</pre><p>Update package list again</p><pre spellcheck=\"false\">sudo apt update</pre><p>Install Docker</p><pre spellcheck=\"false\">sudo apt install docker-ce</pre><p>Install Docker Compose</p><pre spellcheck=\"false\">sudo curl -L \"https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose sudo chmod +x /usr/local/bin/docker-compose</pre><p>Check Docker Compose version</p><pre spellcheck=\"false\">docker-compose --version</pre><p>Check Docker version</p><pre spellcheck=\"false\">docker --version</pre><p>Install gnome keyring</p><pre spellcheck=\"false\">sudo apt-get install gnome-keyring</pre><p>    <br></p><p>Reference : GPT-3.5</p>"
+}
+
+
