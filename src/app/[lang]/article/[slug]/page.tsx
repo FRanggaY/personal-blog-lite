@@ -42,7 +42,7 @@ export async function generateMetadata({ params: { lang, slug } }:ArticleDetailP
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,
       images: ogImages,
-      authors: authors.length > 0 ? authors : [siteMetadata.author],
+      authors: authors ?? [siteMetadata.author],
     },
     twitter: {
       card: "summary_large_image",

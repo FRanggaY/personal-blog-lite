@@ -35,7 +35,7 @@ function Footer({ title }: any) {
   if (!contentFooter) {
     return <div>Loading...</div>; // Display a loading indicator while fetching data
   }
-  console.log(contentFooter)
+
   return (
     <footer className='bg-zinc-100 dark:bg-slate-800 flex flex-col text-black-100  mt-5'>
       <div className='flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16 px-6 py-10'>
