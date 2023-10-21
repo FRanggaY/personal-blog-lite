@@ -1,0 +1,43 @@
+[
+  {
+    "id": "en1",
+    "title": "Lite Version",
+    "lang": "en"
+  },
+  {
+    "id": "en2",
+    "title": "Based personal experience",
+    "lang": "en"
+  },
+  {
+    "id": "en3",
+    "title": "To share knowledge",
+    "lang": "en"
+  },
+  {
+    "id": "en4",
+    "title": "Provide assistance",
+    "lang": "en"
+  },
+
+  {
+    "id": "id1",
+    "title": "Versi Percobaan",
+    "lang": "id"
+  },
+  {
+    "id": "id2",
+    "title": "Berdasarkan pengalaman nyata",
+    "lang": "id"
+  },
+  {
+    "id": "id3",
+    "title": "Untuk membagikan informasi",
+    "lang": "id"
+  },
+  {
+    "id": "id4",
+    "title": "Memberikan bantuan",
+    "lang": "id"
+  }
+]

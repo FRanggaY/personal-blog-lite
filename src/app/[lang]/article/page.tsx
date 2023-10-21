@@ -9,13 +9,14 @@ import NotFound from "@/app/not-found";
 import BaseArticle from "@/components/Article/BaseArticle";
 import { HomePageProps } from "@/types";
 
+
 export async function generateMetadata({ params: { lang } }: HomePageProps) {
   const dict: any = await getDictionary(lang as 'en' | 'id');
   if (!dict) {
     return;
   }
   return {
-    title: 'Home',
+    title: 'Article',
     openGraph: {
       title: siteMetadata.title,
       description: siteMetadata.description,
@@ -28,7 +29,7 @@ export async function generateMetadata({ params: { lang } }: HomePageProps) {
   };
 }
 
-export default async function Home({ params: { lang } }: HomePageProps) {
+export default async function Home({ params: { lang } }:HomePageProps) {
   const dict: any = await getDictionary(lang as 'en' | 'id');
   if (!dict) {
     return <NotFound />;

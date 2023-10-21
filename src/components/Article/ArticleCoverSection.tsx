@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getDictionary } from "@/app/lib/dictionary";
+import { getDictionary } from "@/utils/dictionary";
 import { i18n } from "@/app/i18n.config";
 
-export default function ContentHome({ lang }:any) {
+export default function ArticleCoverSection({ lang }:any) {
   const router = useRouter();
   const [contentPage, setContentPage]:any = useState(null);
 
@@ -35,9 +35,10 @@ export default function ContentHome({ lang }:any) {
   return (
     <section className='py-24'>
       <div className='container'>
-        <h1 className='text-3xl font-bold'>{contentPage.home.title}</h1>
-        <p className='text-gray-500'>{contentPage.home.description}</p>
+        <h1 className='text-3xl font-bold text-red-400 dark:text-blue-500'>{contentPage.article.title}</h1>
+        <p className='text-gray-500'>{contentPage.article.description}</p>
       </div>
+      <a href={`/${lang}`}>Back</a>
     </section>
   );
 }
