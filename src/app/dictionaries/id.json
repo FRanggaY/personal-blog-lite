@@ -11,6 +11,10 @@
     "article": {
       "title": "Artikel",
       "description": "Ini adalah halaman artikel"
+    },
+    "not_found": {
+      "title": "Halaman Tidak Ditemukan",
+      "titleLink": "Kembali ke beranda"
     }
   }
 }

@@ -11,6 +11,10 @@
     "article": {
       "title": "Article",
       "description": "This is the article page"
+    },
+    "not_found": {
+      "title": "Page Not Found",
+      "titleLink": "Go To Home"
     }
   }
 }
