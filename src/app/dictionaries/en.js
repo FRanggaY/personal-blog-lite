@@ -1,4 +1,4 @@
-{
+export const enDict = {
   "navigation": {
     "home": "Home",
     "article": "Article"
@@ -16,5 +16,16 @@
       "title": "Page Not Found",
       "titleLink": "Go To Home"
     }
+  },
+  "footer": {
+    "titleButtonTop": "Top",
+    "data": [
+      {
+        "title": "About",
+        "links": [
+          { "title": "Personal Portfolio", "url": "https://franciscus-rangga-yogianto.vercel.app/en-us"}
+        ],
+      }
+    ]
   }
 }

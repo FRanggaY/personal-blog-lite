@@ -4,6 +4,7 @@ import { cx } from "@/utils";
 import { Inter, Manrope } from "next/font/google";
 import siteMetadata from "@/utils/siteMetaData";
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,7 +19,7 @@ const manrope = Manrope({
 });
 
 export const metadata = {
-  metadataBase: new URL(siteMetadata.siteUrl),
+  metadataBase: new URL(siteMetadata.siteUrl ?? ''),
   title: {
     template: `%s | ${siteMetadata.title}`,
     default: siteMetadata.title, // a default is required when creating a template
@@ -67,6 +68,7 @@ export default function RootLayout({
         )}>
         <Header />
         {children}
+        <Footer title={siteMetadata.title} />
       </body>
     </html>
   )

@@ -15,7 +15,7 @@ const ArticleLayoutRelative = ({ article, lang }:ArticleLayoutProps) => {
   const currentLang = currentPath.split("/")[1];
   return (
     <div className="p-5 group text-dark dark:text-light md:basis-3/12">
-      <Link href={`/${currentLang}/${article.slug}`} className="rounded-xl overflow-hidden">
+      <Link href={`/${currentLang}/${article.slug}`} className="rounded-xl overflow-hidden" target="_blank" rel="noopener noreferrer">
         {
           article.imageUrl &&
           <Image
@@ -41,7 +41,7 @@ const ArticleLayoutRelative = ({ article, lang }:ArticleLayoutProps) => {
           })
         }
         </span>
-        <Link href={`/${currentLang}/${article.slug}`} className="inline-block my-1">
+        <Link href={`/${currentLang}/${article.slug}`} className="inline-block my-1" target="_blank" rel="noopener noreferrer">
           <h2 className="font-semibold capitalize  text-base sm:text-lg">
             <span
               className="bg-gradient-to-r from-cyan-500 to-cyan-600  dark:from-accentDark/50

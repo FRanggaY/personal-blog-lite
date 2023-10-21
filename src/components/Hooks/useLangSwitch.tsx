@@ -22,10 +22,13 @@ export function useLangSwitch() {
     const currentPath = path;
     const currentLang = currentPath.split("/")[1]; // Get the initial language segment
 
-    if (currentPath === '/' || currentLang !== lang) {
-      const newPath = currentPath.replace(`/${currentLang}`, `/${lang}`);
-      url.push(newPath);
+    if(currentPath !== '/sitemap.xml'){
+      if (currentPath === '/' || currentLang !== lang) {
+        const newPath = currentPath.replace(`/${currentLang}`, `/${lang}`);
+        url.push(newPath);
+      }
     }
+
   };
 
   const getStoredLang = () => {

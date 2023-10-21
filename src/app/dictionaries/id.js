@@ -1,4 +1,4 @@
-{
+export const idDict = {
   "navigation": {
     "home": "Beranda",
     "article": "Artikel"
@@ -16,5 +16,16 @@
       "title": "Halaman Tidak Ditemukan",
       "titleLink": "Kembali ke beranda"
     }
+  },
+  "footer": {
+    "titleButtonTop": "Atas",
+    "data": [
+      {
+        "title": "Tentang",
+        "links": [
+          { "title": "Portfolio Pribadi", "url": 'https://franciscus-rangga-yogianto.vercel.app/in-id'}
+        ],
+      }
+    ]
   }
 }
