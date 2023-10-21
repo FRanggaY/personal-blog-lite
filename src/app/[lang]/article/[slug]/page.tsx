@@ -4,6 +4,7 @@ import NotFound from "@/app/not-found";
 import { selectArticleData } from "@/utils/articleManagement";
 import ArticleDetailCoverSection from "@/components/Article/ArticleDetailCoverSection";
 import { ArticleDetailPageProps } from "@/types";
+import ArticleDetail from "@/components/Article/ArticleDetail";
 
 export async function generateMetadata({ params: { lang, slug } }:ArticleDetailPageProps) {
   const dict:any = await getDictionary(lang as 'en' | 'id');
@@ -67,7 +68,7 @@ export default async function Home({ params: { lang, slug } }:ArticleDetailPageP
   return (
     <div className="flex flex-col items-center justify-center p-5">
       <ArticleDetailCoverSection lang={lang} article={article} />
-      <div dangerouslySetInnerHTML={markup} className="dark:text-white text-black prose lg:prose-xl" />
+      <ArticleDetail lang={lang} markup={markup}/>
     </div>
   );
 }

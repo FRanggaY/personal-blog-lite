@@ -74,6 +74,7 @@ function Footer({ title }: any) {
           <Link
             href="/sitemap.xml"
             className="text-gray-500 dark:text-white"
+            target="_blank" rel="noopener noreferrer"
           >
             sitemap.xml
           </Link>
