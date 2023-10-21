@@ -1,15 +1,21 @@
 import { getDictionary } from "@/utils/dictionary";
 import siteMetadata from "@/utils/siteMetaData";
+import InsightRoll from '@/components/Home/InsightRoll';
+
+import dataInsights from '@/data/insights.json'
+import dataCategories from '@/data/categories.json'
+import Category from '@/components/Elements/Category';
 import NotFound from "@/app/not-found";
-import HomeCoverSection from "@/components/Home/HomeCoverSection";
+import BaseArticle from "@/components/Article/BaseArticle";
+import { HomePageProps } from "@/types";
 
-
-export async function generateMetadata({ params: { lang } }:any) {
-  const dict:any = await getDictionary(lang);
+export async function generateMetadata({ params: { lang } }: HomePageProps) {
+  const dict: any = await getDictionary(lang as 'en' | 'id');
   if (!dict) {
     return;
   }
   return {
+    title: 'Home',
     openGraph: {
       title: siteMetadata.title,
       description: siteMetadata.description,
@@ -22,13 +28,16 @@ export async function generateMetadata({ params: { lang } }:any) {
   };
 }
 
-export default async function Home({ params: { lang } }:any) {
-  const dict:any = await getDictionary(lang);
+export default async function Home({ params: { lang } }: HomePageProps) {
+  const dict: any = await getDictionary(lang as 'en' | 'id');
   if (!dict) {
     return <NotFound />;
   }
-
   return (
-    <HomeCoverSection lang={lang} />
+    <main className="flex flex-col items-center justify-center">
+      <InsightRoll lang={lang} insights={dataInsights} />
+      <Category lang={lang} categories={dataCategories} />
+      <BaseArticle lang={lang} />
+    </main>
   );
 }
