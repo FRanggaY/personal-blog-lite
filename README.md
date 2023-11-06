@@ -1,3 +1,14 @@
+# Personal Blog Project (Lite Version)
+
+## Preview :
+![Part One Image](public/social-banner.png)
+
+Frontend Setup :
+- Node 16.17.0
+- Next 13.5.3
+
+> This is lite version of personal blog
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
