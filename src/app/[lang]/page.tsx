@@ -1,8 +1,6 @@
 import { getDictionary } from "@/utils/dictionary";
 import siteMetadata from "@/utils/siteMetaData";
-import InsightRoll from '@/components/Home/InsightRoll';
 
-import dataInsights from '@/data/insights.json'
 import dataCategories from '@/data/categories.json'
 import Category from '@/components/Elements/Category';
 import NotFound from "@/app/not-found";
@@ -35,7 +33,6 @@ export default async function Home({ params: { lang } }: HomePageProps) {
   }
   return (
     <main className="flex flex-col items-center justify-center">
-      <InsightRoll lang={lang} insights={dataInsights} />
       <Category lang={lang} categories={dataCategories} />
       <BaseArticle lang={lang} />
     </main>

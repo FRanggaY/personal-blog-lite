@@ -29,7 +29,7 @@ export default function HomeCoverSection({ lang }:any) {
   }, [lang, router]);
 
   if (!contentPage) {
-    return <div>Loading...</div>; // Display a loading indicator while fetching data
+    return; // Display a loading indicator while fetching data
   }
 
   return (

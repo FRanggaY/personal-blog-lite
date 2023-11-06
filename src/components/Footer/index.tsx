@@ -33,7 +33,7 @@ function Footer({ title }: any) {
   }, [currentLang]);
 
   if (!contentFooter) {
-    return <div>Loading...</div>; // Display a loading indicator while fetching data
+    return; // Display a loading indicator while fetching data
   }
 
   return (
@@ -70,15 +70,6 @@ function Footer({ title }: any) {
 
       <div className='dark:text-white flex justify-between items-center flex-wrap mt-5 border-t border-gray-800 sm:px-16 px-6 py-4'>
         <p>@2023 {title}. All rights reserved</p>
-        <div className="flex flex-1 gap-10 md:justify-end">
-          <Link
-            href="/sitemap.xml"
-            className="text-gray-500 dark:text-white"
-            target="_blank" rel="noopener noreferrer"
-          >
-            sitemap.xml
-          </Link>
-        </div>
       </div>
     </footer>
   )
