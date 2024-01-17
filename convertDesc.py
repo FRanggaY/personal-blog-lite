@@ -40,3 +40,6 @@ pattern = r'\\(?!["=])'
 # Replace backslashes using the pattern
 formatted_data = re.sub(pattern, '', formatted_data)
 print(formatted_data)
+
+# nbsp issue
+# if text already contain / got remove / (not good for article that has prompt)
