@@ -1,5 +1,19 @@
 [
   {
+    "title": "Ubuntu 20.04 - Manage Nginx 1.18",
+    "slug": "article/ubuntu-20-04-manage-nginx-1-18",
+    "categories": [
+      {
+        "id": "3",
+        "label": "Tutorial"
+      }
+    ],
+    "imageUrl": "/article/ubuntu-20-04-manage-nginx-1-18/mn118-x5w-20241011131316.png",
+    "publishedAt": "2024-1-22",
+    "headline": "This article exists, to complete a solution",
+    "lang": "en"
+  },
+  {
     "title": "Ubuntu 20.04 - Manage PostgreSQL 12",
     "slug": "article/ubuntu-20-04-manage-postgresql-12",
     "categories": [
