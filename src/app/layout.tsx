@@ -1,29 +1,21 @@
-import './globals.css'
+import { Source_Sans_3 } from 'next/font/google';
 
-import { Inter, Manrope } from "next/font/google";
+import './globals.css';
+import { metaData } from '@/lib/metaData';
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-in",
+const sourceSans3 = Source_Sans_3({
+  subsets: ['latin'],
+  display: 'swap',
 });
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-mr",
-});
+export const metadata = metaData
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={sourceSans3.className}>
       <body>
-        {children}
+        { children }
       </body>
     </html>
-  )
+  );
 }

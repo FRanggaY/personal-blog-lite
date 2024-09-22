@@ -1,0 +1,61 @@
+---
+title: 'Ubuntu 20.04 - Nginx Upload Large Size got Forbidden in AWS'
+layout: 'article'
+slug: 'ubuntu-20-04-nginx-upload-large-size-got-forbidden-in-aws'
+topic: 'Explore Problem'
+description: 'Explore problem nginx cant upload large size in AWS.'
+categories: ["Information", "Problem"]
+updated_at: '2023-10-02'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import Checklist from '@/components/Checklist';
+
+<ArticleHeader>
+
+# Ubuntu 20.04 - Nginx Upload Large Size got Forbidden in AWS
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help your problem <strong className="text-brand-purple">in AWS</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+## Problem
+
+<ArticleImage
+  src="/article/ubuntu-20-04-nginx-upload-large-size-got-forbidden-in-aws/aen-x5w-20231012231316.png"
+  alt="Thumbnail"
+  width={600}
+  height={400}
+>
+  {/* Optional: additional content can go here */}
+</ArticleImage>
+
+If you encounter a "forbidden" error when trying to upload a large file, it's likely due to security measures.
+
+## Solution
+
+To fix it, do these two things:
+
+## 1. Increase Upload Limit:
+
+Adjust your server settings (e.g., Nginx or Apache) to allow larger file uploads.
+
+## 2. Check WAF (Web Application Firewall):
+
+Make sure your Web Application Firewall isn't blocking legitimate uploads. If needed, contact support to adjust the settings.
+
+By following these simple steps, you can get rid of the "forbidden" error and allow large file uploads on your website.
+
+</ArticleContent>
+
+<ArticleSidebar>
+
+## Reference
+- [https://aws.amazon.com/waf/?nc1=h_ls](https://aws.amazon.com/waf/?nc1=h_ls)
+
+</ArticleSidebar>

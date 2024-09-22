@@ -1,8 +1,8 @@
-# Personal Blog Project (Lite Version)
+# Personal Blog Article (Lite Version)
 
 Frontend Setup :
 - Node 20.9.0
-- Next 13.5.3
+- Next 14.2.13
 
 > This is lite version of personal blog
 

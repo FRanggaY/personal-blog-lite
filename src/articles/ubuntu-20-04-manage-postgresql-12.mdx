@@ -1,0 +1,210 @@
+---
+title: 'Ubuntu 20.04 - Manage PostgreSQL 12'
+layout: 'article'
+slug: 'ubuntu-20-04-manage-postgresql-12'
+topic: 'Setup Installation'
+description: 'Manage PostgreSQL in Ubuntu from Stratch.'
+categories: ["Tutorial"]
+updated_at: '2024-01-17'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import Checklist from '@/components/Checklist';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Ubuntu 20.04 - Manage PostgreSQL 12
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">install and manage PostgreSQL in Ubuntu</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+## Result
+
+<ArticleImage
+  src="/article/ubuntu-20-04-manage-postgresql-12/mp12-x5w-20241011131316.png"
+  alt="Thumbnail"
+  width={600}
+  height={400}
+>
+  {/* Optional: additional content can go here */}
+</ArticleImage>
+
+This is result if postgresql successfuly installed.
+
+## Step by Step
+
+<br />
+
+## 1. update package list
+
+<CodeBlock children={`sudo apt update`}/>
+
+## 2. install required package
+
+<CodeBlock children={`sudo apt install postgresql postgresql-contrib`}/>
+
+## 3. Default role
+
+By default, Postgres uses a concept called “roles” to handle authentication and authorization.
+
+<CodeBlock children={`sudo -i -u postgres`}/>
+
+## 3.1. Exit postgresql
+
+<CodeBlock children={`\q;`}/>
+
+## Service Check
+
+<br/ >
+
+## check status service
+
+<CodeBlock children={`sudo systemctl status postgresql`}/>
+
+## restart service
+
+<CodeBlock children={`sudo systemctl restart postgresql`}/>
+
+
+## start service
+
+<CodeBlock children={`sudo systemctl start postgresql`}/>
+
+## stop service
+
+<CodeBlock children={`sudo systemctl stop postgresql`}/>
+
+## Creating New Role Step by Step
+
+<br/ >
+
+## 1. create role from default role
+
+<CodeBlock children={`sudo -u postgres createuser --interactive`}/>
+
+after that fill name, superuser and privilage
+
+## 2. show list of role, login as default role then
+
+<CodeBlock children={`\du;`}/>
+
+## rename role name
+
+<CodeBlock children={`ALTER ROLE old_name RENAME TO new_name;`}/>
+
+## Creating New Database Step by Step
+
+<br/ >
+
+## create database
+
+<CodeBlock children={`sudo -u role_name createdb db_name`}/>
+
+u can fill db name same as role name.
+
+Note : role_name should have privilage to create database;
+
+## Opening PostgreSQL customize role from prompt Step by Step :
+
+<br />
+
+## add user
+
+<CodeBlock children={`sudo adduser role_name`}/>
+
+## customize role
+
+<CodeBlock children={`sudo -i -u role_name`}/>
+
+## show information
+
+<CodeBlock children={`\conninfo;`}/>
+
+## change password
+
+<CodeBlock children={`\password;`}/>
+
+then fill new password and reenter new password
+
+## Database management PostgreSQL Step by Step :
+
+<br />
+
+## restore database
+
+<CodeBlock children={`sudo -u role_name psql db_name < location_dump.sql`}/>
+
+## look version database, login as default role/customize role
+
+<CodeBlock children={`select VERSION();`}/>
+
+## show database, login as default role/customize role
+
+<CodeBlock children={`\list;`}/>
+
+## show table, login as default role/customize role
+
+<CodeBlock children={`\dt;`}/>
+
+## customize show table
+
+<CodeBlock children={`\dt+;`}/>
+
+## connect database, login as default role/customize role
+
+<CodeBlock children={`\c db_name;`}/>
+
+## Allow Remote Database management PostgreSQL Step by Step :
+
+<br />
+
+## edit configuration
+
+<CodeBlock children={`sudo nano /etc/postgresql/12/main/postgresql.conf`}/>
+
+## find this
+
+<CodeBlock children={`#listen_addresses = 'localhost'`}/>
+
+## then replace to
+
+<CodeBlock children={`#listen_addresses = '*'`}/>
+
+## edit configuration pga_hba
+
+<CodeBlock children={`sudo nano /etc/postgresql/12/main/pg_hba.conf`}/>
+
+## find
+
+<CodeBlock children={`# IPv4 local connections: `}/>
+<CodeBlock children={`host   all            all             127.0.0.1/32           md5`}/>
+
+## replace to
+
+<CodeBlock children={`# IPv4 local connections: `}/>
+<CodeBlock children={`host   all            all             0.0.0.0/0           md5`}/>
+
+## allowing port postgresql in firewall
+
+<CodeBlock children={`sudo ufw allow 5432/tcp`}/>
+
+## restart postgresql service
+
+<CodeBlock children={`sudo systemctl restart postgresql`}/>
+
+
+</ArticleContent>
+
+<ArticleSidebar>
+
+## Reference
+- GPT-3.5
+
+</ArticleSidebar>
