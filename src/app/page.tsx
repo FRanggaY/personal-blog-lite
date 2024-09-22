@@ -1,5 +1,5 @@
 export default function DefaultHome() {
   return (
-    <main></main>
+    <main>1</main>
   );
 }

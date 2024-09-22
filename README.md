@@ -1,10 +1,7 @@
 # Personal Blog Project (Lite Version)
 
-## Preview :
-![Part One Image](public/social-banner.png)
-
 Frontend Setup :
-- Node 16.17.0
+- Node 20.9.0
 - Next 13.5.3
 
 > This is lite version of personal blog
