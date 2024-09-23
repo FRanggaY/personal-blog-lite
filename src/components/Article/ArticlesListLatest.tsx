@@ -23,7 +23,7 @@ const ArticleListLatest: React.FC<ArticleListLatestProps> = ({ articles }) => {
   return (
     <>
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-10 md:mb-16">
-        {latestArticles.length} Article Latest
+        Latest Article
       </h1>
       <div className="flex flex-col md:flex-row md:space-x-4">
         {/* Full content for the first article */}
