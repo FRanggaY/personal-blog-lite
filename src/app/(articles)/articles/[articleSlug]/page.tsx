@@ -9,32 +9,38 @@ import Checklist from '@/components/Checklist';
 import CodeBlock from '@/components/CodeBlock';
 import Container from '@/components/Container';
 
-export default async function ArticlePage({ params }: { params: { articleSlug: string }}) {
-  const content = await fs.readFile(path.join(process.cwd(), 'src/articles', `${params.articleSlug}.mdx`), 'utf-8');
+export default async function ArticlePage({ params }: { params: { articleSlug: string } }) {
 
-  interface Frontmatter {
-    title: string;
+  try {
+    const content = await fs.readFile(path.join(process.cwd(), 'src/articles', `${params.articleSlug}.mdx`), 'utf-8');
+    interface Frontmatter {
+      title: string;
+    }
+
+    const data = await compileMDX<Frontmatter>({
+      source: content,
+      options: {
+        parseFrontmatter: true
+      },
+      components: {
+        ArticleHeader,
+        ArticleContent,
+        ArticleSidebar,
+        Checklist,
+        ArticleImage,
+        CodeBlock,
+      }
+    })
+    return (
+      <Container className="mt-10">
+        {/* <h1>{ data.frontmatter.title }</h1> */}
+        {data.content}
+      </Container>
+    )
+  }catch (err) {
+    console.error(err)
+    return <>Article not found</>
   }
 
-  const data = await compileMDX<Frontmatter>({
-    source: content,
-    options: {
-      parseFrontmatter: true
-    },
-    components: {
-      ArticleHeader,
-      ArticleContent,
-      ArticleSidebar,
-      Checklist,
-      ArticleImage,
-      CodeBlock,
-    }
-  })
 
-  return (
-    <Container className="mt-10">
-      {/* <h1>{ data.frontmatter.title }</h1> */}
-      { data.content }
-    </Container>
-  )
 }

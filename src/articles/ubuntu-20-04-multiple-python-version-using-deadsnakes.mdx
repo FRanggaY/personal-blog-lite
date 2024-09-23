@@ -1,0 +1,71 @@
+---
+title: 'Ubuntu 20.04 - Multiple Python Version using DeadSnakes'
+layout: 'article'
+slug: 'ubuntu-20-04-multiple-python-version-using-deadsnakes'
+topic: 'Setup Installation'
+description: 'Install Multiple Python in Ubuntu.'
+categories: ["Tutorial"]
+updated_at: '2024-09-23'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import Checklist from '@/components/Checklist';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Ubuntu 20.04 - Multiple Python Version using DeadSnakes
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">install  Multiple Python in Ubuntu</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+## Step by Step
+
+<br />
+
+## 1. update package list
+
+<CodeBlock children={`sudo apt update`}/>
+
+## 2. install required package
+
+<CodeBlock children={`sudo apt install software-properties-common`}/>
+<CodeBlock children={`sudo add-apt-repository ppa:deadsnakes/ppa`}/>
+<CodeBlock children={`sudo apt update`}/>
+
+## 3. install python version example using 3.10
+
+<CodeBlock children={`sudo apt-get install python3.10`}/>
+<CodeBlock children={`sudo apt-get install python3.10-venv`}/>
+
+Congratulations. all setup already installed, check the result
+
+## check the list of installed Python versions
+
+<CodeBlock children={`sudo update-alternatives --list python`}/>
+
+## direct checking python version
+
+<CodeBlock children={`python3 --version`}/>
+<CodeBlock children={`python3.10 --version`}/>
+
+## checking python version location
+
+<CodeBlock children={`whereis python3`}/>
+<CodeBlock children={`whereis python3.10`}/>
+
+
+</ArticleContent>
+
+<ArticleSidebar>
+
+## Reference
+- GPT-3.5
+
+</ArticleSidebar>
