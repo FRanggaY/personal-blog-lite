@@ -35,7 +35,7 @@ export default async function Articles() {
   }));
 
   return (
-    <Section spacing="compact">
+    <Section spacing="compact" backgroundColor='theme'>
       <Container>
         {/* Pass articles as props to the client component */}
         <ArticlesList articles={articles} />

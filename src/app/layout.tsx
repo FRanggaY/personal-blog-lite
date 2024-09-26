@@ -13,7 +13,7 @@ export const metadata = metaData
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={sourceSans3.className}>
-      <body>
+      <body className='dark:bg-black bg-white'>
         { children }
       </body>
     </html>

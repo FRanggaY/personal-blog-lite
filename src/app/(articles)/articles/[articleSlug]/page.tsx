@@ -32,7 +32,7 @@ export default async function ArticlePage({ params }: { params: { articleSlug: s
       }
     })
     return (
-      <Container className="mt-10">
+      <Container className="mt-10 text-black dark:text-white bg-white dark:bg-black">
         {/* <h1>{ data.frontmatter.title }</h1> */}
         {data.content}
       </Container>

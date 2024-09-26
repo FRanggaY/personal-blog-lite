@@ -63,7 +63,7 @@ export default function ArticlesList({ articles }: ArticlesListProps) {
         placeholder="Search..."
         value={searchTerm}
         onChange={handleSearchChange}
-        className="mb-4 p-2 border rounded"
+        className="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       />
 
       <div>
@@ -104,7 +104,7 @@ export default function ArticlesList({ articles }: ArticlesListProps) {
               key={index}
               onClick={() => setCurrentPage(index + 1)}
               disabled={currentPage === index + 1}
-              className={`px-2 py-1 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+              className={`px-2 py-1 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black dark:bg-gray-600 dark:text-white'}`}
             >
               {index + 1}
             </button>

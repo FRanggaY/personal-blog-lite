@@ -15,6 +15,7 @@ const Section = ({ children, className, backgroundColor, spacing, ...rest }: Sec
         backgroundColor === 'blue' && 'text-white bg-brand-blue-medium',
         backgroundColor === 'blue-dark' && 'text-white bg-brand-blue-dark',
         backgroundColor === 'purple' && 'text-white bg-brand-purple',
+        backgroundColor === 'theme' && 'text-black dark:text-white bg-white dark:bg-black',
         className
       )}
     >

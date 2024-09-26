@@ -6,6 +6,7 @@ import Container from '@/components/Container';
 import { metaData } from '@/lib/metaData';
 import Image from 'next/image';
 import SocialMedia from './SocialMedia';
+import ThemeToggle from './ThemeToggle';
 
 const Nav = () => {
   return (
@@ -27,7 +28,11 @@ const Nav = () => {
           <Link href="/articles" className='text-xl'>
             Articles
           </Link>
-          <SocialMedia />
+
+          <div className='flex gap-4'>
+            <ThemeToggle />
+            <SocialMedia />
+          </div>
         </Container>
       </Section>
     </nav>

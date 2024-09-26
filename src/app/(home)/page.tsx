@@ -29,7 +29,7 @@ export default async function Home() {
   }));
 
   return (
-    <Section spacing="compact">
+    <Section spacing="compact" backgroundColor='theme'>
       <Container>
          <ArticleListLatest articles={articles} />
       </Container>
