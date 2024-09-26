@@ -123,6 +123,14 @@ Note : role_name should have privilage to create database;
 
 <CodeBlock children={`sudo -i -u role_name`}/>
 
+## grant role to database
+
+<CodeBlock children={`GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_role_name;`}/>
+
+## change role password
+
+<CodeBlock children={`ALTER ROLE your_role_name WITH PASSWORD 'your_password';`}/>
+
 ## show information
 
 <CodeBlock children={`\conninfo;`}/>
@@ -147,7 +155,7 @@ then fill new password and reenter new password
 
 ## show database, login as default role/customize role
 
-<CodeBlock children={`\list;`}/>
+<CodeBlock children={`\list`}/>
 
 ## show table, login as default role/customize role
 
