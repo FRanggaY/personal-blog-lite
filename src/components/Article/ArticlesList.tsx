@@ -36,6 +36,8 @@ export default function ArticlesList({ articles }: ArticlesListProps) {
   const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
   const paginatedArticles = filteredArticles.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
+  const displayedCount = Math.min(currentPage * ITEMS_PER_PAGE, filteredArticles.length);
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
     setCurrentPage(1); // Reset to first page on search
@@ -53,7 +55,7 @@ export default function ArticlesList({ articles }: ArticlesListProps) {
   return (
     <>
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-10 md:mb-16">
-        {paginatedArticles.length} of {articles.length} articles
+        {displayedCount} of {filteredArticles.length} articles
       </h1>
 
       <input

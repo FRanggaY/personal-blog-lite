@@ -199,6 +199,11 @@ then fill new password and reenter new password
 <CodeBlock children={`# IPv4 local connections: `}/>
 <CodeBlock children={`host   all            all             0.0.0.0/0           md5`}/>
 
+## you can change for customize remote
+
+<CodeBlock children={`# Deny remote connections for role3`}/>
+<CodeBlock children={`host    all    role3    0.0.0.0/0    reject`}/>
+
 ## allowing port postgresql in firewall
 
 <CodeBlock children={`sudo ufw allow 5432/tcp`}/>
