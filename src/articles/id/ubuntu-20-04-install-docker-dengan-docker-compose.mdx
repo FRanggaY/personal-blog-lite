@@ -1,0 +1,103 @@
+---
+title: 'Ubuntu 20.04 - Install Docker dengan Docker Compose'
+layout: 'article'
+slug: 'ubuntu-20-04-install-docker-dengan-docker-compose'
+topic: 'Setup Installation'
+description: 'Install Docker di Ubuntu dari awal.'
+categories: ["Tutorial"]
+updated_at: '2023-10-21'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import Checklist from '@/components/Checklist';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Ubuntu 20.04 - Install Docker dengan Docker Compose
+
+<strong className="text-brand-blue-medium">Semoga artikel ini</strong> membantu untuk <strong className="text-brand-purple">install Docker di Ubuntu</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+## Hasil
+
+<ArticleImage
+  src="/article/ubuntu-20-04-install-docker-with-docker-compose/aen-t5w-202310211532.png"
+  alt="Thumbnail"
+  width={600}
+  height={400}
+>
+  {/* Optional: additional content can go here */}
+</ArticleImage>
+
+Berikut hasil jika instalansi docker berhasil.
+
+## Langkah - langkah
+
+<br />
+
+## 1. update package list
+
+<CodeBlock children={`sudo apt update`}/>
+
+## 2. install required package
+
+<CodeBlock children={`sudo apt install apt-transport-https ca-certificates curl software-properties-common`}/>
+
+## 3. GPG key untuk Docker
+
+<CodeBlock children={`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`}/>
+
+## 4. Add Docker Repository
+
+<CodeBlock children={`echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`}/>
+
+## 5. Update package list again
+
+<CodeBlock children={`sudo apt update`}/>
+
+
+## 6. Install Docker
+
+<CodeBlock children={`sudo apt install docker-ce`}/>
+
+
+## 7. Install Docker Compose
+
+<CodeBlock children={`sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`}/>
+
+## 8. Allow Access
+
+<CodeBlock children={`sudo chmod +x /usr/local/bin/docker-compose`}/>
+
+## 9. Install gnome keyring
+
+<CodeBlock children={`sudo apt-get install gnome-keyring`}/>
+
+Selamat. instalansi berhasil, lihat hasil
+
+## Check Docker Compose version
+
+<CodeBlock children={`docker-compose --version`}/>
+
+<br/>
+
+## Check Docker version
+
+<CodeBlock children={`docker --version`}/>
+
+
+</ArticleContent>
+
+<ArticleSidebar>
+
+## Referensi
+- GPT-3.5
+
+</ArticleSidebar>

@@ -1,0 +1,58 @@
+---
+title: 'Ubuntu 20.04 - Nginx Upload Large Size got Forbidden in AWS'
+layout: 'article'
+slug: 'ubuntu-20-04-nginx-upload-large-size-got-forbidden-in-aws'
+topic: 'Explore Problem'
+description: 'Mencari solusi dari masalah nginx cant upload large size di AWS.'
+categories: ["Informasi", "Masalah"]
+updated_at: '2023-10-02'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import Checklist from '@/components/Checklist';
+
+<ArticleHeader>
+
+# Ubuntu 20.04 - Nginx Upload Large Size got Forbidden in AWS
+
+<strong className="text-brand-blue-medium">Semoga artikel ini</strong> membantu untuk menyelesaikan masalah <strong className="text-brand-purple">di AWS</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+## Masalah
+
+<ArticleImage
+  src="/article/ubuntu-20-04-nginx-upload-large-size-got-forbidden-in-aws/aen-x5w-20231012231316.png"
+  alt="Thumbnail"
+  width={600}
+  height={400}
+>
+  {/* Optional: additional content can go here */}
+</ArticleImage>
+
+ika Anda mengalami kesalahan "forbidden" saat mencoba mengunggah file besar, kemungkinan disebabkan oleh langkah-langkah keamanan.
+
+## Solusi
+Untuk memperbaikinya, lakukan dua hal berikut:
+
+## 1. Tingkatkan Batas Unggah:
+Sesuaikan pengaturan server Anda (misalnya, Nginx atau Apache) untuk mengizinkan unggahan file yang lebih besar.
+
+## 2. Periksa WAF (Firewall Aplikasi Web):
+Pastikan Firewall Aplikasi Web Anda tidak memblokir unggahan yang sah. Jika perlu, hubungi dukungan AWS untuk menyesuaikan pengaturannya.
+
+Dengan mengikuti langkah-langkah sederhana ini, Anda dapat mengatasi kesalahan "forbidden" dan memungkinkan unggahan file besar di situs web Anda.
+
+</ArticleContent>
+
+<ArticleSidebar>
+
+## Referensi
+- [https://aws.amazon.com/waf/?nc1=h_ls](https://aws.amazon.com/waf/?nc1=h_ls)
+
+</ArticleSidebar>
