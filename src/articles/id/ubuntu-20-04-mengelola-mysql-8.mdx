@@ -1,9 +1,9 @@
 ---
-title: 'Ubuntu 20.04 - Manage MySQL 8'
+title: 'Ubuntu 20.04 - Mengelola MySQL 8'
 layout: 'article'
-slug: 'ubuntu-20-04-manage-mysql-8'
+slug: 'ubuntu-20-04-mengelola-mysql-8'
 topic: 'Setup Installation'
-description: 'Manage MySQL in Ubuntu from Stratch.'
+description: 'Mengelola MySQL di Ubuntu dari awal.'
 categories: ["Tutorial"]
 updated_at: '2024-09-23'
 ---
@@ -17,9 +17,9 @@ import CodeBlock from '@/components/CodeBlock';
 
 <ArticleHeader>
 
-# (Draft) Ubuntu 20.04 - Manage MySQL 8
+# (Draft) Ubuntu 20.04 - Mengelola MySQL 8
 
-<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">install and manage MySQL in Ubuntu</strong>.
+<strong className="text-brand-blue-medium">Semoga artikel ini</strong> membantu untuk <strong className="text-brand-purple">install dan mengelola MySQL di Ubuntu</strong>.
 
 </ArticleHeader>
 
@@ -36,9 +36,9 @@ import CodeBlock from '@/components/CodeBlock';
   {/* Optional: additional content can go here */}
 </ArticleImage>
 
-This is result if mysql successfuly installed.
+Berikut hasil jika instalansi mysql berhasil.
 
-## Step by Step
+## Langkah - langkah
 
 <br />
 
@@ -52,17 +52,15 @@ This is result if mysql successfuly installed.
 
 ## 3. secure the installation
 
-By default, Postgres uses a concept called “roles” to handle authentication and authorization.
-
 <CodeBlock children={`sudo mysql_secure_installation`}/>
 
-During the process, you will be prompted to:
+Saat proses, kamu akan diminta untuk mengatur:
 
-- Set a root password.
-- Remove anonymous users.
-- Disallow root login remotely.
-- Remove test database and access to it.
-- Reload privilege tables.
+- Menyiapkan root password.
+- Menghapus users tidak dikenal.
+- Menonaktifkan root login remote.
+- Menghapus test database.
+- Reload kembali hak istimewa table.
 
 ## Service Check
 
@@ -137,7 +135,7 @@ u can fill app_database with valid database name.
 
 <CodeBlock children={`REVOKE ALL PRIVILEGES ON app_database.* TO 'app_role';`}/>
 
-## Database management MySQL Step by Step :
+## Database mengelolament MySQL Step by Step :
 
 <br />
 
@@ -157,7 +155,7 @@ u can fill app_database with valid database name.
 
 <CodeBlock children={`select * from {table_name};`}/>
 
-## Allow Remote Database management MySQL Step by Step :
+## Allow Remote Database mengelolament MySQL Step by Step :
 
 <br />
 
@@ -188,7 +186,7 @@ Allow the user to connect from a specific IP or any IP (% means any host):
 
 <ArticleSidebar>
 
-## Reference
+## Referensi
 - [https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
 
 </ArticleSidebar>

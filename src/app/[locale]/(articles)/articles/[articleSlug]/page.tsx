@@ -9,10 +9,10 @@ import Checklist from '@/components/Checklist';
 import CodeBlock from '@/components/CodeBlock';
 import Container from '@/components/Container';
 
-export default async function ArticlePage({ params }: { params: { articleSlug: string } }) {
+export default async function ArticlePage({ params }: { readonly params: { locale: string, articleSlug: string } }) {
 
   try {
-    const content = await fs.readFile(path.join(process.cwd(), 'src/articles', `${params.articleSlug}.mdx`), 'utf-8');
+    const content = await fs.readFile(path.join(process.cwd(), `src/articles/${params.locale}`, `${params.articleSlug}.mdx`), 'utf-8');
     interface Frontmatter {
       title: string;
     }
@@ -39,7 +39,7 @@ export default async function ArticlePage({ params }: { params: { articleSlug: s
     )
   }catch (err) {
     console.error(err)
-    return <>Article not found</>
+    return  <p className='text-center dark:text-white text-black mt-5'>Article not found</p>
   }
 
 

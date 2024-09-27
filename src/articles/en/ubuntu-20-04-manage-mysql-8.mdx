@@ -1,0 +1,192 @@
+---
+title: 'Ubuntu 20.04 - Manage MySQL 8'
+layout: 'article'
+slug: 'ubuntu-20-04-manage-mysql-8'
+topic: 'Setup Installation'
+description: 'Manage MySQL in Ubuntu from Stratch.'
+categories: ["Tutorial"]
+updated_at: '2024-09-23'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import Checklist from '@/components/Checklist';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# (Draft) Ubuntu 20.04 - Manage MySQL 8
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">install and manage MySQL in Ubuntu</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+## Result
+
+<ArticleImage
+  src="/article/ubuntu-20-04-manage-mysql-8/mp12-x5w-20241011131317.png"
+  alt="Thumbnail"
+  width={600}
+  height={400}
+>
+  {/* Optional: additional content can go here */}
+</ArticleImage>
+
+This is result if mysql successfuly installed.
+
+## Step by Step
+
+<br />
+
+## 1. update package list
+
+<CodeBlock children={`sudo apt update`}/>
+
+## 2. install required package
+
+<CodeBlock children={`sudo apt install mysql-server`}/>
+
+## 3. secure the installation
+
+<CodeBlock children={`sudo mysql_secure_installation`}/>
+
+During the process, you will be prompted to:
+
+- Set a root password.
+- Remove anonymous users.
+- Disallow root login remotely.
+- Remove test database and access to it.
+- Reload privilege tables.
+
+## Service Check
+
+<br/ >
+
+## check status service
+
+<CodeBlock children={`sudo systemctl status mysql`}/>
+
+## restart service
+
+<CodeBlock children={`sudo systemctl restart mysql`}/>
+
+
+## start service
+
+<CodeBlock children={`sudo systemctl start mysql`}/>
+
+## stop service
+
+<CodeBlock children={`sudo systemctl stop mysql`}/>
+
+## Creating New Role Step by Step
+
+<br/ >
+
+## 0. login mysql
+
+<CodeBlock children={`sudo mysql -u root -p`}/>
+
+## 1. create role (MYSQL 8+)
+
+<CodeBlock children={`CREATE ROLE 'app_role';`}/>
+
+u can fill app_role with valid role name.
+
+## Creating New Database Step by Step
+
+<br/ >
+
+## create database
+
+<CodeBlock children={`CREATE DATABASE app_database;`}/>
+
+u can fill app_database with valid database name.
+
+## Opening MySQL customize role from prompt Step by Step :
+
+<br />
+
+## create user
+
+<CodeBlock children={`CREATE USER '{user_name}'@'%' IDENTIFIED WITH mysql_native_password BY '{password}';`}/>
+
+## grant permssion user
+
+<CodeBlock children={`GRANT ALL PRIVILEGES ON {name_db}.* TO '{user_name}'@'%';`}/>
+
+## grant permssion role
+
+<CodeBlock children={`GRANT ALL PRIVILEGES ON app_database.* TO 'app_role';`}/>
+
+## Then assign the role to the user:
+
+<CodeBlock children={`GRANT 'app_role' TO '{user_name}'@'%';`}/>
+
+## Make sure to reload the privileges:
+
+<CodeBlock children={`FLUSH PRIVILEGES;`}/>
+
+## revoke permssion role
+
+<CodeBlock children={`REVOKE ALL PRIVILEGES ON app_database.* TO 'app_role';`}/>
+
+## Database management MySQL Step by Step :
+
+<br />
+
+## show database
+
+<CodeBlock children={`show databases;`}/>
+
+## use database
+
+<CodeBlock children={`use {db_name};`}/>
+
+## show table
+
+<CodeBlock children={`show tables;`}/>
+
+## running example query
+
+<CodeBlock children={`select * from {table_name};`}/>
+
+## Allow Remote Database management MySQL Step by Step :
+
+<br />
+
+## edit configuration
+
+<CodeBlock children={`sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf`}/>
+
+## find this
+
+<CodeBlock children={`bind-address = 127.0.0.1`}/>
+
+## then replace to
+
+<CodeBlock children={`bind-address = 0.0.0.0`}/>
+
+Allow the user to connect from a specific IP or any IP (% means any host):
+
+## allowing port mysql in firewall
+
+<CodeBlock children={`sudo ufw allow 3306`}/>
+
+## restart mysql service
+
+<CodeBlock children={`sudo systemctl restart mysql`}/>
+
+
+</ArticleContent>
+
+<ArticleSidebar>
+
+## Reference
+- [https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
+
+</ArticleSidebar>

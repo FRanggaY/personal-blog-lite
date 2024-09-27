@@ -16,9 +16,12 @@ export interface ArticleType {
 
 interface ArticlesListProps {
   articles: ArticleType[]; // Define the type for articles
+  title: string;
+  language: string;
+  category_title: string;
 }
 
-export default function ArticlesList({ articles }: ArticlesListProps) {
+export default function ArticlesList({ articles, title, language, category_title }: ArticlesListProps) {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -55,7 +58,7 @@ export default function ArticlesList({ articles }: ArticlesListProps) {
   return (
     <>
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-10 md:mb-16">
-        {displayedCount} of {filteredArticles.length} articles
+        {displayedCount} - {filteredArticles.length} {title}
       </h1>
 
       <input
@@ -67,7 +70,7 @@ export default function ArticlesList({ articles }: ArticlesListProps) {
       />
 
       <div>
-        <h3>Filter by Category:</h3>
+        <h3>{category_title}</h3>
         <div className='flex flex-row flex-wrap gap-2 items-center'>
           {allCategories.map(category => (
             <label key={category}>
@@ -87,7 +90,7 @@ export default function ArticlesList({ articles }: ArticlesListProps) {
 
         <div className='mt-5'>
           {paginatedArticles.map(({ title, slug, description }) => (
-            <Link href={`/articles/${slug}`} key={slug}>
+            <Link href={`/${language}/articles/${slug}`} key={slug}>
               <div className="flex-1 mb-4 h-full md:mb-0 border p-5 mt-2">
                 <h2 className="text-2xl font-bold">
                   {title}

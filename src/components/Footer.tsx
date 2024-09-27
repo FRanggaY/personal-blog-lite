@@ -5,7 +5,7 @@ import SocialMedia from './SocialMedia';
 
 const Footer = () => {
   const authorName = metaData.creator;
-  const authorUrl = 'https://twitter.com/';
+  const authorUrl = process.env.NEXT_PUBLIC_AUTHOR_URL;
 
   return (
     <footer className="border-t-4 bg-white text-black dark:bg-spacejelly-gray-dark dark:text-blue-100">
@@ -16,7 +16,7 @@ const Footer = () => {
               <p className="text-lg">
                 &copy; {new Date().getFullYear()} Personal Blog <a href={authorUrl} className="font-semibold hover:text-white">{authorName}</a>. All rights reserved
               </p>
-              <p>2.0.0</p>
+              <p>{process.env.NEXT_PUBLIC_APP_VERSION}</p>
               <SocialMedia />
             </div>
           </div>

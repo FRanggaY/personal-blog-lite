@@ -1,0 +1,71 @@
+---
+title: 'Ubuntu 20.04 - Multiple Python Version dengan menggunakan DeadSnakes'
+layout: 'article'
+slug: 'ubuntu-20-04-multiple-python-version-dengan-menggunakan-deadsnakes'
+topic: 'Setup Installation'
+description: 'Install Multiple Python di Ubuntu.'
+categories: ["Tutorial"]
+updated_at: '2024-09-23'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import Checklist from '@/components/Checklist';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Ubuntu 20.04 - Multiple Python Version dengan menggunakan DeadSnakes
+
+<strong className="text-brand-blue-medium">Semoga artikel ini</strong> membantu untuk <strong className="text-brand-purple">install  Multiple Python di Ubuntu</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+## Langkah - langkah
+
+<br />
+
+## 1. update package list
+
+<CodeBlock children={`sudo apt update`}/>
+
+## 2. install required package
+
+<CodeBlock children={`sudo apt install software-properties-common`}/>
+<CodeBlock children={`sudo add-apt-repository ppa:deadsnakes/ppa`}/>
+<CodeBlock children={`sudo apt update`}/>
+
+## 3. install python sebagai contoh menggunakan versi 3.10
+
+<CodeBlock children={`sudo apt-get install python3.10`}/>
+<CodeBlock children={`sudo apt-get install python3.10-venv`}/>
+
+Selamat. instalansi berhasil, lihat hasil
+
+## check the list of installed Python versions
+
+<CodeBlock children={`sudo update-alternatives --list python`}/>
+
+## direct checking python version
+
+<CodeBlock children={`python3 --version`}/>
+<CodeBlock children={`python3.10 --version`}/>
+
+## checking python version location
+
+<CodeBlock children={`whereis python3`}/>
+<CodeBlock children={`whereis python3.10`}/>
+
+
+</ArticleContent>
+
+<ArticleSidebar>
+
+## Referensi
+- GPT-3.5
+
+</ArticleSidebar>

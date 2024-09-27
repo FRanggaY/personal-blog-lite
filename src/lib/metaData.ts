@@ -1,6 +1,6 @@
 export const description = 'Article - Tutorial | Documentation';
-export const siteName = 'FRY article - Tutorial | Documentation';
-export const url = 'http://localhost:3000';
+export const siteName = `${process.env.NEXT_PUBLIC_AUTHOR_INITIAL} article - Tutorial | Documentation`;
+export const url = process.env.NEXT_PUBLIC_APP_URL;
 export const ogImage = `${url}/images/og.jpg`;
 
 export const metaData = {
@@ -32,6 +32,6 @@ export const metaData = {
     creator: '@fry',
     images: [ogImage],
   },
-  authors: [{ name: 'FRY', url: 'https://franciscusrangga.com' }],
-  creator: 'FRY',
+  authors: [{ name: process.env.NEXT_PUBLIC_AUTHOR_INITIAL, url: process.env.NEXT_PUBLIC_AUTHOR_URL }],
+  creator: process.env.NEXT_PUBLIC_AUTHOR_INITIAL,
 }

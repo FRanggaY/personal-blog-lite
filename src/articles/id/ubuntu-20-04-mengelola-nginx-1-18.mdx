@@ -1,9 +1,9 @@
 ---
-title: 'Ubuntu 20.04 - Manage Nginx 1.18'
+title: 'Ubuntu 20.04 - Mengelola Nginx 1.18'
 layout: 'article'
-slug: 'ubuntu-20-04-manage-nginx-1-18'
+slug: 'ubuntu-20-04-mengelola-nginx-1-18'
 topic: 'Setup Installation'
-description: 'Manage Nginx in Ubuntu from Stratch.'
+description: 'Mengelola Nginx in Ubuntu dari awal.'
 categories: ["Tutorial"]
 updated_at: '2024-01-22'
 ---
@@ -17,9 +17,9 @@ import CodeBlock from '@/components/CodeBlock';
 
 <ArticleHeader>
 
-# Ubuntu 20.04 - Manage Nginx 1.18
+# Ubuntu 20.04 - Mengelola Nginx 1.18
 
-<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">install and manage Nginx in Ubuntu</strong>.
+<strong className="text-brand-blue-medium">Semoga artikel ini</strong> membantu untuk <strong className="text-brand-purple">install dan mengelola Nginx in Ubuntu</strong>.
 
 </ArticleHeader>
 
@@ -38,7 +38,7 @@ import CodeBlock from '@/components/CodeBlock';
 
 This is result if nginx successfuly installed.
 
-## Step by Step
+## Langkah - langkah
 
 <br />
 
@@ -93,15 +93,15 @@ This is result if nginx successfuly installed.
 
 Allow protocol port when firewall active
 
-As demonstrated by the output, there are three profiles available for Nginx:
+Seperti yang ditunjukkan oleh output, terdapat tiga profil yang tersedia untuk Nginx:
 
-- Nginx Full: This profile opens both port 80 (normal, unencrypted web traffic) and port 443 (TLS/SSL encrypted traffic)
-- Nginx HTTP: This profile opens only port 80 (normal, unencrypted web traffic)
-- Nginx HTTPS: This profile opens only port 443 (TLS/SSL encrypted traffic)
+- Nginx Full: membuka port 80 (lalu lintas web normal, tidak terenkripsi) dan port 443 (lalu lintas terenkripsi TLS/SSL)
+- Nginx HTTP: hanya membuka port 80 (lalu lintas web normal, tidak terenkripsi)
+- Nginx HTTPS: hanya membuka port 443 (lalu lintas terenkripsi TLS/SSL)
 
 <CodeBlock children={`sudo ufw allow 'Nginx HTTP'`}/>
 
-## Deploy multiple website(Tested on Golang Gin, Python FastAPI that running on Docker) :
+## Deploy multiple website(Test di Golang Gin, Python FastAPI yang berjalan dari Docker) :
 
 <br/ >
 
@@ -190,13 +190,17 @@ first time you will need to register your email and other confirmation.
 
 <CodeBlock children={`30 2 * * 1 /usr/bin/certbot renew --quiet`}/>
 
-This will run Certbot every Monday at 2:30 AM and automatically renew the certificates if they are close to expiration.
+Ini akan menjalankan Certbot setiap Senin pukul 2:30 AM dan secara otomatis memperbarui sertifikat jika mendekati masa kadaluarsa.
+
+<br/>
+
+Edit : terkait otomatis schedule renew certificate kadang tidak berjalan
 
 </ArticleContent>
 
 <ArticleSidebar>
 
-## Reference
+## Referensi
 - GPT-3.5
 
 </ArticleSidebar>
