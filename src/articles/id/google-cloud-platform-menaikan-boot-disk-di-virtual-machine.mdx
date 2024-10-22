@@ -1,0 +1,99 @@
+---
+title: 'Google Cloud Platform Menaikan Boot Disk di Virtual Machine'
+layout: 'article'
+slug: 'google-cloud-platform-menaikan-boot-disk-di-virtual-machine'
+topic: 'Setup Installation'
+description: 'Explore Menaikan Boot Disk di Virtual Machine GCP.'
+categories: ["Tutorial", "Google Cloud Service"]
+updated_at: '2024-10-22'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Google Cloud Platform Menaikan Boot Disk di Virtual Machine
+
+<strong className="text-brand-blue-medium">Semoga artikel ini</strong> membantu untuk <strong className="text-brand-purple">Menaikan Boot Disk di Virtual Machine GCP</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+## Solusi
+
+Hanya berlaku untuk menaikan dan tidak berhasil jika ingin menurunkan boot size
+
+Mengatur Disk di GCP Console :
+
+## Pergi ke Cloud Shell, kemudian tulis ini
+
+DISK_NAME = "Test"
+
+ZONE_NAME = "example-asia"
+
+SIZE_INCREASE = "50GB"
+
+<CodeBlock children={`gcloud compute disks resize DISK_NAME --size SIZE_INCREASE --zone ZONE_NAME`}/>
+
+## Konek ke SSH
+
+YOUR_VM_INSTANCE_NAME = "TEST VM"
+
+<CodeBlock children={`gcloud compute ssh YOUR_VM_INSTANCE_NAME`}/>
+
+Buka Parted
+
+<CodeBlock children={`sudo parted /dev/sda`}/>
+
+Print parted
+
+<CodeBlock children={`print`}/>
+
+Atur ukuran partisi
+
+<CodeBlock children={`resizepart 1 100%`}/>
+
+Keluar Parted
+
+<CodeBlock children={`quit`}/>
+
+## Mengatur ukuran di Filesystem (untuk ext4. berjalan di linux ubuntu)
+
+<CodeBlock children={`sudo resize2fs /dev/sda1`}/>
+
+Update /etc/fstab
+
+<CodeBlock children={`sudo blkid`}/>
+
+Edit fstab
+
+<CodeBlock children={`sudo nano /etc/fstab`}/>
+
+Opsi 1 : menggunakan UUID
+
+<CodeBlock children={`UUID=your-root-uuid  /  ext4  defaults  0  1`}/>
+
+Opsi 2 : menggunakan LABEL
+
+<CodeBlock children={`LABEL=your-label  /  ext4  defaults  0  1`}/>
+
+Test Konfigurasi
+
+<CodeBlock children={`sudo mount -a`}/>
+
+Reboot System
+
+<CodeBlock children={`sudo reboot`}/>
+
+Check Disk after reboot
+
+<CodeBlock children={`df -h`}/>
+
+
+</ArticleContent>
+
