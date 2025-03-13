@@ -5,10 +5,10 @@ slug: 'ubuntu-20-04-manage-mysql-8'
 topic: 'Setup Installation'
 description: 'Manage MySQL in Ubuntu from Stratch.'
 categories: ["Tutorial"]
-updated_at: '2024-09-23'
+updated_at: '2025-03-13'
 ---
 
-import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleHeader from '@/components/Article/AticleHeader';
 import ArticleContent from '@/components/Article/ArticleContent';
 import ArticleSidebar from '@/components/Article/ArticleSidebar';
 import ArticleImage from '@/components/Article/ArticleImage';
@@ -17,7 +17,7 @@ import CodeBlock from '@/components/CodeBlock';
 
 <ArticleHeader>
 
-# (Draft) Ubuntu 20.04 - Manage MySQL 8
+# Ubuntu 20.04 - Manage MySQL 8
 
 <strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">install and manage MySQL in Ubuntu</strong>.
 
@@ -115,11 +115,35 @@ u can fill app_database with valid database name.
 
 <CodeBlock children={`CREATE USER '{user_name}'@'%' IDENTIFIED WITH mysql_native_password BY '{password}';`}/>
 
-## grant permssion user
+## look list user grant
+
+<CodeBlock children={`SELECT user, host FROM mysql.db WHERE db = 'app_database';`}/>
+
+## look list user grant for all access
+
+<CodeBlock children={`SELECT user, host, db, select_priv, insert_priv, update_priv, delete_priv, create_priv, drop_priv
+FROM mysql.db
+WHERE db = 'app_database';`}/>
+
+## grant permission user
 
 <CodeBlock children={`GRANT ALL PRIVILEGES ON {name_db}.* TO '{user_name}'@'%';`}/>
 
-## grant permssion role
+## grant permission Privileges with GRANT OPTION
+
+If you want to grant all privileges to the root@localhost user on a specific database (e.g., testing), you need to ensure that the user has the GRANT OPTION privilege. You can grant privileges to root@localhost as follows:
+
+<CodeBlock children={`GRANT ALL PRIVILEGES ON {name_db}.* TO 'root'@'localhost' WITH GRANT OPTION;`}/>
+
+## revoke permission user
+
+<CodeBlock children={`REVOKE ALL PRIVILEGES ON app_database.* from 'app_user';`}/>
+
+## revoke permission user with grant option
+
+<CodeBlock children={`REVOKE GRANT OPTION ON app_database.* from 'app_user';`}/>
+
+## grant permission role
 
 <CodeBlock children={`GRANT ALL PRIVILEGES ON app_database.* TO 'app_role';`}/>
 
@@ -130,10 +154,6 @@ u can fill app_database with valid database name.
 ## Make sure to reload the privileges:
 
 <CodeBlock children={`FLUSH PRIVILEGES;`}/>
-
-## revoke permssion role
-
-<CodeBlock children={`REVOKE ALL PRIVILEGES ON app_database.* TO 'app_role';`}/>
 
 ## Database management MySQL Step by Step :
 

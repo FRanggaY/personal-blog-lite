@@ -5,7 +5,7 @@ slug: 'ubuntu-20-04-manage-postgresql-12'
 topic: 'Setup Installation'
 description: 'Manage PostgreSQL in Ubuntu from Stratch.'
 categories: ["Tutorial"]
-updated_at: '2024-01-17'
+updated_at: '2025-03-13'
 ---
 
 import ArticleHeader from '@/components/Article/ArticleHeader';
@@ -56,7 +56,11 @@ By default, Postgres uses a concept called “roles” to handle authentication 
 
 <CodeBlock children={`sudo -i -u postgres`}/>
 
-## 3.1. Exit postgresql
+## 3.1 Access Postgre
+
+<CodeBlock children={`psql`}/>
+
+## 3.2 Exit postgresql
 
 <CodeBlock children={`\q;`}/>
 
@@ -190,6 +194,7 @@ then fill new password and reenter new password
 <CodeBlock children={`sudo nano /etc/postgresql/12/main/pg_hba.conf`}/>
 
 ## find
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 <CodeBlock children={`# IPv4 local connections: `}/>
 <CodeBlock children={`host   all            all             127.0.0.1/32           md5`}/>
@@ -203,6 +208,9 @@ then fill new password and reenter new password
 
 <CodeBlock children={`# Deny remote connections for role3`}/>
 <CodeBlock children={`host    all    role3    0.0.0.0/0    reject`}/>
+
+<CodeBlock children={`# allow remote for specific user`}/>
+<CodeBlock children={`host    all user_for_remote_name  0.0.0.0/0 md5`}/>
 
 ## allowing port postgresql in firewall
 

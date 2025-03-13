@@ -1,0 +1,99 @@
+---
+title: 'Google Cloud Platform Increase Boot Disk on Virtual Machine'
+layout: 'article'
+slug: 'google-cloud-platform-increase-boot-disk-on-virtual-machine'
+topic: 'Setup Installation'
+description: 'Explore Increase Boot Disk on Virtual Machine GCP.'
+categories: ["Tutorial", "Google Cloud Service"]
+updated_at: '2024-10-22'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Google Cloud Platform Increase Boot Disk on Virtual Machine
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">Increase Boot Disk on Virtual Machine GCP</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+## Solution
+
+Should be increase boot size and not work if you want to downgrade boot size
+
+Resize the Disk in GCP Console:
+
+## Go To Cloud Shell, then write this
+
+DISK_NAME = "Test"
+
+ZONE_NAME = "example-asia"
+
+SIZE_INCREASE = "50GB"
+
+<CodeBlock children={`gcloud compute disks resize DISK_NAME --size SIZE_INCREASE --zone ZONE_NAME`}/>
+
+## Connect to your SSH
+
+YOUR_VM_INSTANCE_NAME = "TEST VM"
+
+<CodeBlock children={`gcloud compute ssh YOUR_VM_INSTANCE_NAME`}/>
+
+Open Parted
+
+<CodeBlock children={`sudo parted /dev/sda`}/>
+
+Print parted
+
+<CodeBlock children={`print`}/>
+
+Resize the Partition
+
+<CodeBlock children={`resizepart 1 100%`}/>
+
+Exit Parted
+
+<CodeBlock children={`quit`}/>
+
+## Resize the Filesystem (for ext4 work on linux ubuntu)
+
+<CodeBlock children={`sudo resize2fs /dev/sda1`}/>
+
+Update /etc/fstab
+
+<CodeBlock children={`sudo blkid`}/>
+
+Edit fstab
+
+<CodeBlock children={`sudo nano /etc/fstab`}/>
+
+Option 1 : using UUID
+
+<CodeBlock children={`UUID=your-root-uuid  /  ext4  defaults  0  1`}/>
+
+Option 2 : using LABEL
+
+<CodeBlock children={`LABEL=your-label  /  ext4  defaults  0  1`}/>
+
+Test Configuration
+
+<CodeBlock children={`sudo mount -a`}/>
+
+Reboot System
+
+<CodeBlock children={`sudo reboot`}/>
+
+Check Disk after reboot
+
+<CodeBlock children={`df -h`}/>
+
+
+</ArticleContent>
+

@@ -1,0 +1,104 @@
+---
+title: 'Windows Manage Git 2.37'
+layout: 'article'
+slug: 'windows-manage-git-2-37'
+topic: 'Setup Installation'
+description: 'Explore manage git in window.'
+categories: ["Tutorial"]
+updated_at: '2025-03-13'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Windows Manage Git 2.37
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">manage Git in Window</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+Clone
+
+## Clone - default username
+
+<CodeBlock children={`git clone https://github.com/usernamerepo/repository.git`}/>
+
+## Clone - customize username
+
+<CodeBlock children={`git clone https://username@github.com/usernamerepo/repository.git`}/>
+
+## Clone - customize username and password (Not Recommended)
+
+<CodeBlock children={`git clone https://username:password@github.com/usernamerepo/repository.git`}/>
+
+This approach can work, but it is not recommended for security reasons. Storing your password in the URL like this is risky because it exposes your password in plaintext. Modern Git versions encourage the use of personal access tokens (PAT) for authentication, especially for services like GitHub, which have deprecated password-based authentication.
+
+Prefer using token on
+
+<CodeBlock children={`git clone https://username:token@github.com/usernamerepo/repository.git`}/>
+
+Push
+
+## Push with default username
+
+<CodeBlock children={`git push -u origin main/master`}/>
+
+## Push your customize account
+
+Check current account
+
+<CodeBlock children={`git config --local user.name
+git config --local user.email
+`}/>
+
+Change account
+
+<CodeBlock children={`git config --local user.name "your_github_username"
+git config --local user.email "your_github_email"
+`}/>
+
+Check again current account
+
+<CodeBlock children={`git config --local user.name
+git config --local user.email
+`}/>
+
+Clear saved credentials
+
+<CodeBlock children={`git config --local credential.helper ""`}/>
+
+If you remove or change the local configuration
+
+<CodeBlock children={`git config --local --unset user.name
+git config --local --unset user.email`}/>
+
+
+<CodeBlock children={`git push`}/>
+
+config --local only need configurate first and one time
+
+Multiple Remote
+
+<CodeBlock children={`# Add the first remote (e.g., GitHub)
+git remote add origin https://github.com/username/repository.git
+
+# Add the second remote (e.g., GitLab)
+git remote add gitlab https://gitlab.com/username/repository.git`}/>
+
+Push
+
+<CodeBlock children={`# Push to GitHub (origin)
+git push origin main
+
+# Push to GitLab (gitlab)
+git push gitlab main`}/>
+
+</ArticleContent>
+

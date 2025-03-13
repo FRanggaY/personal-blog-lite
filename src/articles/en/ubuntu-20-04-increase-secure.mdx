@@ -1,0 +1,195 @@
+---
+title: 'Ubuntu 20.04 - Increase Secure'
+layout: 'article'
+slug: 'ubuntu-20-04-increase-secure'
+topic: 'Setup Installation'
+description: 'Increase Secure in Ubuntu 20.04.'
+categories: ["Tutorial"]
+updated_at: '2025-03-13'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Ubuntu 20.04 - Increase Secure
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">Increase Secure in Ubuntu</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+## Result
+<ArticleImage
+  src="/article/ubuntu-20-04-increase-secure/mp12-x5w-20241011131316.png"
+  alt="Thumbnail"
+  width={600}
+  height={400}
+>
+  {/* Optional: additional content can go here */}
+</ArticleImage>
+
+
+Step by Step
+
+<br />
+
+## Firewall
+
+A firewall is the first tool you should use to limit access to your server.
+
+Install the firewall
+
+<CodeBlock children={`sudo apt install ufw`}/>
+
+Activate the firewall
+
+<CodeBlock children={`sudo ufw enable`}/>
+
+1. Allow SSH connections
+
+<CodeBlock children={`sudo ufw allow ssh`}/>
+
+2. If your server is used for web services
+
+<CodeBlock children={`
+  sudo ufw allow http
+  sudo ufw allow https
+`}/>
+
+3. Add other rules as necessary. For example, if you're using Docker, ensure the ports used by your containers are allowed if needed.
+
+<br />
+
+## Fail2ban
+
+Fail2ban is a tool that helps block IP addresses that attempt brute-force or repeated attacks on your server.
+
+Install Fail2ban:
+
+<CodeBlock children={` sudo apt install fail2ban`}/>
+
+Configure Fail2ban to protect SSH and Nginx:
+
+<CodeBlock children={` sudo nano /etc/fail2ban/jail.local`}/>
+
+Add the configuration for SSH and Nginx:
+
+<CodeBlock children={`
+  [sshd]
+  enabled = true
+  port = ssh
+  maxretry = 3
+  findtime = 600
+  bantime = 3600
+
+  [nginx-http-auth]
+  enabled = true
+  port = http,https
+  filter = nginx-http-auth
+  logpath = /var/log/nginx/error.log
+  maxretry = 3
+  findtime = 600
+  bantime = 3600
+`}/>
+
+[nginx-http-auth]: This section configures Fail2ban to protect Nginx (web server) from brute-force attacks on HTTP authentication.
+
+enabled = true: Enable Fail2ban protection for Nginx.
+
+port = http, https: Sets Fail2ban to monitor HTTP (80) and HTTPS (443) ports.
+
+filter = nginx-http-auth: Uses a filter appropriate for HTTP authentication in Nginx to detect failed login attempts.
+
+logpath = /var/log/nginx/error.log: The log file where Fail2ban will monitor failed login attempts (in this case, Nginx’s error.log).
+
+maxretry = 3: Fail2ban will block an IP after 3 failed authentication attempts within the time window.
+
+findtime = 600: 10 minutes for checking consecutive authentication failures.
+
+bantime = 3600: After 3 failed authentication attempts within 10 minutes, the IP address will be blocked for 1 hour.
+
+<br />
+
+[sshd]: This section configures Fail2ban to protect the SSH service (used for logging into the server).
+
+enabled = true: This means Fail2ban is enabled to monitor SSH.
+
+port = ssh: Sets Fail2ban to monitor the default SSH port (usually port 22).
+
+maxretry = 3: Fail2ban will block an IP address after 3 consecutive failed login attempts.
+
+findtime = 600: Time window for the failed login attempts. This is 600 seconds (10 minutes).
+
+bantime = 3600: After 3 failed login attempts in 10 minutes, the IP address will be blocked for 1 hour (3600 seconds).
+
+<br />
+
+## Use SSL/TLS for Encryption
+If your server is serving websites, make sure you use HTTPS (SSL/TLS) to encrypt the data sent between the client and server. Let's Encrypt is an easy and free way to obtain an SSL certificate.
+
+Steps to enable SSL/TLS with Nginx using Let's Encrypt: Install Certbot and the Nginx plugin:
+
+<CodeBlock children={` sudo apt install certbot python3-certbot-nginx`}/>
+
+Run Certbot to obtain an SSL certificate: Certbot will automatically configure Nginx and redirect HTTP to HTTPS.
+
+<br />
+Regular Updates and Patching
+Keeping your system up-to-date with security patches is crucial. You can set up automatic updates for your system or installed applications. For automatic updates on an Ubuntu system:
+
+<CodeBlock children={` sudo apt install unattended-upgrades`}/>
+
+Configure automatic updates in the file /etc/apt/apt.conf.d/50unattended-upgrades.
+
+<br />
+Limit Access with SSH Key Authentication
+Using SSH keys is more secure than using a password to log in to the server.
+
+Here are the steps to disable password-based login and only allow SSH key authentication:
+
+1. Create an SSH key on your local machine:
+<CodeBlock children={` ssh-keygen -t rsa -b 4096`}/>
+
+When running ssh-keygen, you will be asked to enter a location to save the generated key. If you don’t specify a file location, it will use the default ~/.ssh/id_rsa for the private key and ~/.ssh/id_rsa.pub for the public key. You will also be prompted to enter a passphrase (optional). This passphrase adds an extra layer of security by requiring you to enter it each time you use the private key.
+
+2. On the Server (Copying the Public Key)
+Copy the public key to the server:
+
+<CodeBlock children={` ssh-copy-id user@your_server_ip`}/>
+
+If ssh-copy-id is not available, you can manually add the public key content to the ~/.ssh/authorized_keys file on the server:
+
+<CodeBlock children={` cat ~/.ssh/id_rsa.pub | ssh user@your_server_ip "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"`}/>
+
+3. Edit the SSH Configuration to Disable Password Authentication:
+<CodeBlock children={` sudo nano /etc/ssh/sshd_config`}/>
+
+Ensure the following values:
+
+<CodeBlock children={` PasswordAuthentication no PubkeyAuthentication yes`}/>
+
+If it doesn’t work, edit UsePAM no.
+
+4. Restart the SSH Service:
+<CodeBlock children={` sudo systemctl restart sshd`}/>
+
+If you have set a passphrase, you will be prompted to enter it.
+
+By following these steps, you’ve configured SSH authentication using public/private key pairs, which not only strengthens security but also makes logging in easier without needing to enter a password every time.
+
+
+</ArticleContent>
+
+<ArticleSidebar>
+
+## Reference
+- GPT-4
+
+</ArticleSidebar>
+
+
