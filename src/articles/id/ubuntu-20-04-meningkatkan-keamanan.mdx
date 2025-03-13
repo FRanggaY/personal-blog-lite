@@ -1,0 +1,209 @@
+---
+title: 'Ubuntu 20.04 - Meningkatkan Keamanan'
+layout: 'article'
+slug: 'ubuntu-20-04-meningkatkan-keamanan'
+topic: 'Setup Installation'
+description: 'Meningkatkan Keamanan di Ubuntu 20.04.'
+categories: ["Tutorial"]
+updated_at: '2025-03-13'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Ubuntu 20.04 - Meningkatkan Keamanan
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">Meningkatkan Keamanan di Ubuntu</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+## Result
+<ArticleImage
+  src="/article/ubuntu-20-04-increase-secure/mp12-x5w-20241011131316.png"
+  alt="Thumbnail"
+  width={600}
+  height={400}
+>
+  {/* Optional: additional content can go here */}
+</ArticleImage>
+
+
+## Step by Step
+
+<br />
+
+## Firewall
+
+Firewall adalah alat pertama yang harus digunakan untuk membatasi akses ke server.
+
+install firewall
+
+<CodeBlock children={`sudo apt install ufw`}/>
+
+activate firewall
+
+<CodeBlock children={`sudo ufw enable`}/>
+
+1. Mengelola untuk menerima ssh
+
+<CodeBlock children={`sudo ufw allow ssh`}/>
+
+2. jika server Anda digunakan untuk web
+
+<CodeBlock children={`
+  sudo ufw allow http
+  sudo ufw allow https
+`}/>
+
+3. aturan lain sesuai kebutuhan. Misalnya, untuk Docker, Anda perlu memastikan port yang digunakan oleh container diizinkan jika perlu.
+
+<br/>
+
+## Fail2ban
+
+Fail2ban adalah tool yang bisa membantu memblokir alamat IP yang mencoba melakukan brute-force atau serangan berulang ke server Anda.
+Install Fail2ban:
+<CodeBlock children={`
+  sudo apt install fail2ban
+`}/>
+Konfigurasi Fail2ban untuk melindungi SSH dan Nginx, misalnya:
+<CodeBlock children={`
+  sudo nano /etc/fail2ban/jail.local
+`}/>
+
+Tambahkan konfigurasi untuk SSH dan Nginx:
+
+<CodeBlock children={`
+  [sshd]
+  enabled = true
+  port = ssh
+  maxretry = 3
+  findtime = 600
+  bantime = 3600
+
+  [nginx-http-auth]
+  enabled = true
+  port = http,https
+  filter = nginx-http-auth
+  logpath = /var/log/nginx/error.log
+  maxretry = 3
+  findtime = 600
+  bantime = 3600
+`}/>
+
+[nginx-http-auth]: Bagian ini mengonfigurasi Fail2ban untuk melindungi Nginx (web server) dari serangan brute force terhadap autentikasi HTTP.
+
+enabled = true: Mengaktifkan proteksi Fail2ban untuk Nginx.
+
+port = http,https: Mengatur agar Fail2ban memantau port HTTP (80) dan HTTPS (443).
+
+filter = nginx-http-auth: Menggunakan filter yang sesuai dengan autentikasi HTTP pada Nginx untuk mendeteksi upaya login yang gagal.
+
+logpath = /var/log/nginx/error.log: Lokasi file log tempat Fail2ban akan memantau upaya login yang gagal (di sini, file log untuk Nginx adalah error.log).
+
+maxretry = 3: Mengatur agar Fail2ban hanya akan memblokir IP setelah 3 kali kegagalan autentikasi dalam waktu yang ditentukan.
+
+findtime = 600: Waktu 10 menit yang diberikan untuk memeriksa kegagalan autentikasi berturut-turut.
+
+bantime = 3600: Setelah 3 kegagalan autentikasi dalam waktu 10 menit, alamat IP akan diblokir selama 1 jam.
+
+<br />
+
+[sshd]: Bagian ini mengonfigurasi Fail2ban untuk melindungi layanan SSH (yang digunakan untuk login ke server).
+
+enabled = true: Ini berarti Fail2ban diaktifkan untuk memantau layanan SSH.
+
+port = ssh: Mengatur agar Fail2ban memantau port default untuk SSH (biasanya port 22).
+
+maxretry = 3: Mengatur agar Fail2ban hanya akan memblokir IP jika ada 3 kali kegagalan login berturut-turut.
+
+findtime = 600: Waktu yang diperbolehkan untuk kegagalan login berturut-turut. Angka ini dalam detik, jadi di sini artinya selama 10 menit (600 detik).
+
+bantime = 3600: Setelah mencapai 3 kegagalan login dalam waktu 10 menit, alamat IP yang mencoba login akan diblokir selama 1 jam (3600 detik).
+
+
+<br />
+
+## Penggunaan SSL/TLS untuk Enkripsi
+Jika server Anda menyajikan web, pastikan Anda menggunakan HTTPS (SSL/TLS) untuk mengenkripsi data yang dikirim antara client dan server. Let's Encrypt adalah cara mudah dan gratis untuk mendapatkan sertifikat SSL.
+Langkah untuk mengaktifkan SSL/TLS dengan Nginx menggunakan Let's Encrypt:
+Install Certbot dan plugin Nginx:
+<CodeBlock children={`
+  sudo apt install certbot python3-certbot-nginx
+`}/>
+Jalankan Certbot untuk mendapatkan sertifikat SSL:
+
+Certbot akan otomatis mengonfigurasi Nginx dan melakukan redirect dari HTTP ke HTTPS.
+
+<br />
+
+## Update dan Patch Secara Berkala
+Menjaga sistem Anda tetap up-to-date dengan patch keamanan adalah hal yang sangat penting. Anda bisa mengatur pembaruan otomatis untuk sistem atau aplikasi yang diinstall.Untuk pembaruan otomatis pada sistem Ubuntu:
+<CodeBlock children={`
+  sudo apt install unattended-upgrades
+`}/>
+
+Konfigurasikan pembaruan otomatis pada file /etc/apt/apt.conf.d/50unattended-upgrades.
+
+<br />
+
+## Batasi Akses dengan SSH Key Authentication
+Menggunakan SSH key lebih aman daripada menggunakan password untuk login ke server.
+
+Berikut adalah langkah-langkah untuk menonaktifkan login menggunakan password dan hanya mengizinkan SSH key:
+Buat SSH key pada mesin lokal Anda:
+<CodeBlock children={`
+  ssh-keygen -t rsa -b 4096
+`}/>
+
+Saat menjalankan ssh-keygen, Anda akan diminta untuk memasukkan lokasi file untuk menyimpan kunci yang dibuat. Jika Anda tidak memasukkan lokasi file, secara default akan menggunakan ~/.ssh/id_rsa untuk private key dan ~/.ssh/id_rsa.pub untuk public key.
+Anda juga akan diminta untuk memasukkan passphrase (opsional). Passphrase ini menambah lapisan keamanan tambahan dengan meminta Anda memasukkan passphrase setiap kali menggunakan private key.
+Di Sisi Server (Menyalin Public Key)
+
+Salin public key ke server:
+<CodeBlock children={`
+  ssh-copy-id user@your_server_ip
+`}/>
+
+Jika ssh-copy-id tidak tersedia, Anda bisa melakukan ini secara manual dengan menambahkan isi dari id_rsa.pub ke file ~/.ssh/authorized_keys di server:
+
+<CodeBlock children={`
+  cat ~/.ssh/id_rsa.pub | ssh user@your_server_ip "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+`}/>
+
+Edit konfigurasi SSH untuk menonaktifkan password authentication:
+<CodeBlock children={`
+  sudo nano /etc/ssh/sshd_config
+`}/>
+Pastikan nilai berikut:
+<CodeBlock children={`
+  PasswordAuthentication no
+  PubkeyAuthentication yes
+`}/>
+apabila tidak bekerja, maka edit usePam no
+
+Restart SSH service:
+
+<CodeBlock children={`
+  sudo systemctl restart sshd
+`}/>
+
+Jika Anda telah mengatur passphrase, Anda akan diminta untuk memasukkan passphrase tersebut.
+Dengan mengikuti langkah-langkah ini, Anda telah mengonfigurasi autentikasi SSH menggunakan pasangan kunci private/public key yang tidak hanya memperkuat keamanan tetapi juga memudahkan login tanpa harus memasukkan password setiap kali.
+
+</ArticleContent>
+
+<ArticleSidebar>
+
+## Reference
+- GPT-4
+
+</ArticleSidebar>
+
+

@@ -1,0 +1,71 @@
+---
+title: 'Ubuntu 20.04 - Cron Job Renew Nginx'
+layout: 'article'
+slug: 'ubuntu-20-04-cron-job-renew-nginx'
+topic: 'Setup Installation'
+description: 'Cron Job Renew Nginx using Ubuntu 20.04.'
+categories: ["Tutorial"]
+updated_at: '2025-03-13'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import Checklist from '@/components/Checklist';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Ubuntu 20.04 - Cron Job Renew Nginx
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">Cron Job Renew Nginx in Ubuntu</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+A cron job is a scheduled task in Linux and Unix-like systems that automatically runs scripts, commands, or programs at specified times or intervals. It's essentially a way to automate repetitive tasks without needing human intervention.
+
+The term "cron" comes from the Greek word chronos, which means time. The cron service (also known as cron daemon) runs in the background and looks for instructions in the crontab file, which contains a list of commands and the schedules for when those commands should run.
+
+Install Certbot and Nginx Plugin
+To install Certbot and the Nginx plugin, run the following command:
+
+<CodeBlock children={`sudo apt install certbot python3-certbot-nginx`}/>
+
+Set Up Cron Job for Automatic Certificate Renewal
+1. Open your crontab file
+Run the following command to open your crontab file:
+
+<CodeBlock children={`sudo crontab -e`}/>
+
+2. Add a cron job for certificate renewal
+To ensure that your certificates are renewed automatically, add the following line to your crontab. This cron job will run twice a day:
+
+<CodeBlock children={`0 0,12 * * * certbot renew --quiet --nginx >> /var/log/certbot_renew.log 2>&1`}/>
+
+Explanation:
+
+0 0,12 * * *: This means the cron job will run at 12:00 AM and 12:00 PM every day.
+
+certbot renew --quiet --nginx: This command tells Certbot to renew any certificates that are close to expiring. The --quiet flag ensures that no output is shown unless there’s an error.
+>> /var/log/certbot_renew.log: This appends the standard output (normal logs) to the file /var/log/certbot_renew.log.
+2>&1: This redirects the standard error (error messages) to the same log file.
+
+3. Save and exit the crontab file
+If you're using nano to edit the file, save the changes by pressing:
+
+CTRL + X, then press Y to confirm, and then press Enter.
+
+<br />
+
+Test the Cron Job (Optional but Recommended)
+
+To make sure the cron job is working correctly, you can manually run the command for a dry run:
+
+<CodeBlock children={`sudo certbot renew --dry-run --nginx`}/>
+
+This will simulate the renewal process without actually renewing the certificate, allowing you to verify that everything is set up correctly.
+
+</ArticleContent>

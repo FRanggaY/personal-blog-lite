@@ -1,0 +1,62 @@
+---
+title: 'Ubuntu 20.04 - Cron Job Renew Nginx'
+layout: 'article'
+slug: 'ubuntu-20-04-cron-job-renew-nginx'
+topic: 'Setup Installation'
+description: 'Cron Job Renew Nginx di Ubuntu 20.04.'
+categories: ["Tutorial"]
+updated_at: '2025-03-13'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import Checklist from '@/components/Checklist';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Ubuntu 20.04 - Cron Job Renew Nginx
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">Cron Job Renew Nginx di Ubuntu</strong>.
+
+</ArticleHeader>
+<ArticleContent>
+Cron job adalah tugas terjadwal di sistem Linux dan Unix-like yang secara otomatis menjalankan skrip, perintah, atau program pada waktu atau interval yang ditentukan. Ini adalah cara untuk mengotomatisasi tugas-tugas repetitif tanpa memerlukan intervensi manusia.
+
+Istilah "cron" berasal dari kata Yunani chronos, yang berarti waktu. Layanan cron (juga dikenal sebagai cron daemon) berjalan di latar belakang dan mencari instruksi dalam file crontab, yang berisi daftar perintah dan jadwal kapan perintah tersebut harus dijalankan.
+
+Install Certbot dan Plugin Nginx
+Untuk menginstal Certbot dan plugin Nginx, jalankan perintah berikut:
+
+<CodeBlock children={`sudo apt install certbot python3-certbot-nginx`}/>
+
+Setel Cron Job untuk Pembaruan Sertifikat Otomatis
+1. Buka file crontab Anda
+Jalankan perintah berikut untuk membuka file crontab Anda:
+
+<CodeBlock children={`sudo crontab -e`}/>
+
+2. Tambahkan cron job untuk pembaruan sertifikat
+Untuk memastikan sertifikat Anda diperbarui secara otomatis, tambahkan baris berikut ke file crontab Anda. Cron job ini akan dijalankan dua kali sehari:
+
+<CodeBlock children={`0 0,12 * * * certbot renew --quiet --nginx >> /var/log/certbot_renew.log 2>&1`}/>
+
+Penjelasan:
+0 0,12 * * *: Ini berarti cron job akan dijalankan pada 12:00 AM dan 12:00 PM setiap hari.
+certbot renew --quiet --nginx: Perintah ini memberi tahu Certbot untuk memperbarui sertifikat yang hampir kedaluwarsa. Flag --quiet memastikan tidak ada output yang ditampilkan kecuali terjadi kesalahan.
+>> /var/log/certbot_renew.log: Ini akan menambahkan output standar (log normal) ke file /var/log/certbot_renew.log.
+2>&1: Ini mengarahkan kesalahan standar (pesan kesalahan) ke file log yang sama.
+3. Simpan dan keluar dari file crontab
+Jika Anda menggunakan nano untuk mengedit file, simpan perubahan dengan menekan:
+
+CTRL + X, lalu tekan Y untuk mengonfirmasi, dan tekan Enter.
+Uji Cron Job (Opsional tetapi Disarankan)
+Untuk memastikan cron job berfungsi dengan benar, Anda dapat menjalankan perintah ini secara manual untuk simulasi:
+
+<CodeBlock children={`sudo certbot renew --dry-run --nginx`}/>
+
+Ini akan mensimulasikan proses pembaruan tanpa benar-benar memperbarui sertifikat, memungkinkan Anda untuk memverifikasi bahwa semuanya telah diatur dengan benar.
+
+</ArticleContent>

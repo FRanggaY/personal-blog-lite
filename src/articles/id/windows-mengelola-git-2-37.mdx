@@ -1,0 +1,104 @@
+---
+title: 'Windows Manage Git 2.37'
+layout: 'article'
+slug: 'windows-mengelola-git-2-37'
+topic: 'Setup Installation'
+description: 'Mengelola git di window.'
+categories: ["Tutorial"]
+updated_at: '2025-03-13'
+---
+
+import ArticleHeader from '@/components/Article/ArticleHeader';
+import ArticleContent from '@/components/Article/ArticleContent';
+import ArticleSidebar from '@/components/Article/ArticleSidebar';
+import ArticleImage from '@/components/Article/ArticleImage';
+import CodeBlock from '@/components/CodeBlock';
+
+<ArticleHeader>
+
+# Windows Manage Git 2.37
+
+<strong className="text-brand-blue-medium">Hope this article</strong> help to <strong className="text-brand-purple">manage Git in Window</strong>.
+
+</ArticleHeader>
+
+<ArticleContent>
+
+Clone
+
+## Clone - nama pengguna default
+
+<CodeBlock children={`git clone https://github.com/usernamerepo/repository.git`}/>
+
+## Clone - kustomisasi nama pengguna
+
+<CodeBlock children={`git clone https://username@github.com/usernamerepo/repository.git`}/>
+
+## Clone - kustomisasi nama pengguna dan kata sandi (Tidak Disarankan)
+
+<CodeBlock children={`git clone https://username:password@github.com/usernamerepo/repository.git`}/>
+
+Pendekatan ini bisa bekerja, tetapi tidak disarankan karena alasan keamanan. Menyimpan kata sandi di URL seperti ini berisiko karena dapat mengungkapkan kata sandi dalam bentuk teks biasa. Versi Git modern mendorong penggunaan token akses pribadi (PAT) untuk otentikasi, terutama untuk layanan seperti GitHub, yang telah menghentikan otentikasi berbasis kata sandi.
+
+Disarankan untuk menggunakan token pada
+
+<CodeBlock children={`git clone https://username:token@github.com/usernamerepo/repository.git`}/>
+
+Push
+
+## Push dengan nama pengguna default
+
+<CodeBlock children={`git push -u origin main/master`}/>
+
+## Push dengan akun kustom
+
+Cek akun saat ini
+
+<CodeBlock children={`git config --local user.name
+git config --local user.email
+`}/>
+
+Ubah akun
+
+<CodeBlock children={`git config --local user.name "your_github_username"
+git config --local user.email "your_github_email"
+`}/>
+
+Cek lagi akun saat ini
+
+<CodeBlock children={`git config --local user.name
+git config --local user.email
+`}/>
+
+Hapus kredensial yang tersimpan
+
+<CodeBlock children={`git config --local credential.helper ""`}/>
+
+Jika ingin menghapus konfigurasi lokal
+
+<CodeBlock children={`git config --local --unset user.name
+git config --local --unset user.email`}/>
+
+
+<CodeBlock children={`git push`}/>
+
+config --local hanya perlu dikonfigurasi sekali dan untuk pertama kalinya.
+
+Multiple Remote
+
+<CodeBlock children={`# Add the first remote (e.g., GitHub)
+git remote add origin https://github.com/username/repository.git
+
+# Add the second remote (e.g., GitLab)
+git remote add gitlab https://gitlab.com/username/repository.git`}/>
+
+Push
+
+<CodeBlock children={`# Push to GitHub (origin)
+git push origin main
+
+# Push to GitLab (gitlab)
+git push gitlab main`}/>
+
+</ArticleContent>
+
