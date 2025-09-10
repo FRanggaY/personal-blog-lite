@@ -20,7 +20,7 @@
 
 # Progress 
 
-- Successfully changed the framework and reduced the project file size from 690 MB to 77 MB
+- Successfully changed the framework and reduced the project file size from 540 MB to 77 MB
 
 
 # For more detail just look on repo
