@@ -1,3 +1,33 @@
+# This project is no longer maintained due to the following issues:
+
+- Large file size for a relatively small project
+
+- Dependencies on other projects, making it harder to maintain (a small project should require minimal effort)
+
+- Originally intended as a personal tool, but it includes a management system — leading to a misleading focus
+
+# The decision has been made to:
+
+- Migrate to a framework with a lightweight file size
+
+- Keep it simple as an MVP (minimal viable product), focused on small-scale and personal use
+
+# However, the project will still prioritize:
+
+- Easy maintenance
+
+- Easy customization
+
+# Progress 
+
+- Successfully changed the framework and reduced the project file size from 690 MB to 77 MB
+
+
+# For more detail just look on repo
+
+- personal-blog-website
+
+
 # Personal Blog Article (Lite Version)
 
 Frontend Setup :
